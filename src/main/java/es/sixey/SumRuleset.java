@@ -12,10 +12,11 @@ public class SumRuleset implements Ruleset {
     }
 
     @Override
-    public Cell lookup(Kernel kernel) {
-        var newState = stateOfSum.get(kernel.getSum());
-        if (newState == null) throw new RuntimeException("No!");
-        return new Cell(newState);
+    public int lookup(Kernel kernel) {
+        var sum = kernel.getSum();
+        var newState = stateOfSum.get(sum);
+        if (newState == null) throw new RuntimeException("No rule for sum " + sum);
+        return newState;
     }
 
     public static SumRuleset generateArbitrary(int maxState, int kernelDiameter) {
@@ -23,7 +24,7 @@ public class SumRuleset implements Ruleset {
         var maxSum = cellsLength * (maxState - 1);
         var map = new HashMap<Integer, Integer>();
         var random = new Random();
-        for (int i = 0; i < maxSum; i++) {
+        for (int i = 0; i <= maxSum; i++) {
             map.put(i, random.nextInt(maxState));
         }
         return new SumRuleset(map);

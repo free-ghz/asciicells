@@ -7,6 +7,16 @@ public class Board {
     private final int height;
     private final Cell[] cells;
 
+    public Board(int width, int height) {
+        this.width = width;
+        this.height = height;
+        var arrayLength = width*height;
+        cells = new Cell[arrayLength];
+        for (int i = 0; i < arrayLength; i++) {
+            cells[i] = new Cell();
+        }
+    }
+
     public Board(int width, int height, int maxState) {
         this.width = width;
         this.height = height;
@@ -39,5 +49,13 @@ public class Board {
 
         var location = (y*width) + x;
         return cells[location];
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 }
