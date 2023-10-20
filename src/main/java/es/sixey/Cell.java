@@ -15,4 +15,9 @@ public class Cell {
     public void setState(int state) {
         this.state = state;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(state);
+    }
 }
