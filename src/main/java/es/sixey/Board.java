@@ -17,16 +17,24 @@ public class Board {
         }
     }
 
-    public Board(int width, int height, int maxState) {
+    public Board(int width, int height, Decorator decorator) {
         this.width = width;
         this.height = height;
         var arrayLength = width*height;
         cells = new Cell[arrayLength];
         Random random = new Random();
-        for (int i = 0; i < arrayLength; i++) {
-            cells[i] = new Cell(random.nextInt(maxState));
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                var location = (j*width) + i;
+                cells[location] = new Cell(decorator.stateAt(i, j));
+            }
         }
     }
+
+    public Board(int width, int height, int maxState) {
+        this(width, height, (x, y) -> new Random().nextInt(maxState));
+    }
+
     public Board(int width, int height, Cell[] cells) {
         this.width = width;
         this.height = height;
@@ -57,5 +65,9 @@ public class Board {
 
     public int getHeight() {
         return height;
+    }
+
+    public interface Decorator {
+        int stateAt(int x, int y);
     }
 }
