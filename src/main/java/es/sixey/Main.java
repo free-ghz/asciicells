@@ -14,11 +14,11 @@ public class Main {
         var initBoard = new Board(boardWidth, boardHeight, numberOfStates);
         var game = new Game(initBoard, ruleset, kernelSize);
 
+        var alphabet = new Alphabet();
         for (int i = 0; i < gameRounds; i++) {
             System.out.println("\n");
-            System.out.println(game);
+            System.out.println(Pipes.pipes(game.getBoard()));
             game.step();
-            Thread.sleep(500);
         }
     }
 }

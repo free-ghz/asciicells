@@ -48,4 +48,23 @@ public class Kernel {
     public int hashCode() {
         return Arrays.toString(cells).hashCode(); // cheating  a bit hehe ;3
     }
+
+
+    public Cell cellAt(int x, int y) {
+        while (x < 0) {
+            x = diameter - x;
+        }
+        while (y < 0) {
+            y = diameter - y;
+        }
+        while (x >= diameter) {
+            x = x - diameter;
+        }
+        while (y >= diameter) {
+            y = y - diameter;
+        }
+
+        var location = (y*diameter) + x;
+        return cells[location];
+    }
 }

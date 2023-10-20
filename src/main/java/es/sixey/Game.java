@@ -27,12 +27,12 @@ public class Game {
         return current;
     }
 
-    @Override
-    public String toString() {
+    public String toString(Alphabet alphabet) {
         StringBuilder out = new StringBuilder();
         for (int y = 0; y < current.getHeight(); y++) {
             for (int x = 0; x < current.getWidth(); x++) {
-                out.append(current.cellAt(x, y).getState());
+                var state = current.cellAt(x, y).getState();
+                out.append(alphabet.forState(state));
             }
             out.append("\n");
         }
