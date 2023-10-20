@@ -73,6 +73,11 @@ public class Pipes {
                 if (symbol == null) {
                     symbol = PIPES.get(0);
                 }
+                if ((flags & IS_BIG) > 0) {
+                    symbol = "\u001B[37m" + symbol;
+                } else if ((flags & IS_SMALL) > 0) {
+                    symbol = "\u001B[36m" + symbol;
+                }
 
                 out.append(symbol);
             }
