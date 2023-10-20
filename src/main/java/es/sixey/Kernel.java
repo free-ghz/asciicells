@@ -52,10 +52,10 @@ public class Kernel {
 
     public Cell cellAt(int x, int y) {
         while (x < 0) {
-            x = diameter - x;
+            x = diameter + x;
         }
         while (y < 0) {
-            y = diameter - y;
+            y = diameter + y;
         }
         while (x >= diameter) {
             x = x - diameter;

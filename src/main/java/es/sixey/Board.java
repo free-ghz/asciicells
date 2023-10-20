@@ -43,10 +43,10 @@ public class Board {
 
     public Cell cellAt(int x, int y) {
         while (x < 0) {
-            x = width - x;
+            x = width + x;
         }
         while (y < 0) {
-            y = height - y;
+            y = height + y;
         }
         while (x >= width) {
             x = x - width;

@@ -10,7 +10,7 @@ public class Main {
         int boardHeight = 40;
         int gameRounds = 100;
 
-        var ruleset = SumRuleset.generateArbitrary(numberOfStates, kernelSize);
+        var ruleset = PositionalRuleset.generateArbitrary(numberOfStates, kernelSize);
         // var initBoard = new Board(boardWidth, boardHeight, (x, y) -> {
         //     if (y > 2 && y < boardHeight - 3) {
         //         if ((x+4) % 8 == 0) return 2;
@@ -18,13 +18,30 @@ public class Main {
         //     return 0;
         // });
         var initBoard = new Board(boardWidth, boardHeight, (x, y) -> {
-            if (((x+(y*boardWidth)) % 34) == 0) return 1;
+            if (((x+(y*boardWidth)) % 31) == 0) return 1;
             return 0;
         });
+        //var initBoard = new Board(boardWidth, boardHeight, (x, y) -> {
+        //    if (((x+(y*boardWidth)) % 711) == 0) return 1;
+        //    if (((x+(y*boardWidth)) % 911) == 0) return 2;
+        //    return 0;
+        //});
+        //var initBoard = new Board(boardWidth, boardHeight, (x, y) -> {
+        //    if (x == 38 || x == 41) {
+        //        if (y >= 18 && y <= 21) {
+        //            return 1;
+        //        }
+        //    }
+        //    if (x > 38 && x < 41) {
+        //        if (y == 18 || y == 21) {
+        //            return 1;
+        //        }
+        //    }
+        //    return 0;
+        //});
         var game = new Game(initBoard, ruleset, kernelSize);
 
-        for (int i = 0; i < gameRounds; i++) {
-            //System.out.println("\n");
+        while(true) {
             System.out.print(Pipes.pipes(game.getBoard()));
             Thread.sleep(100);
             game.step();
